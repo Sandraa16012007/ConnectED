@@ -9,7 +9,8 @@ const alumniData = [
   { id: 7, name: "Arjun Mehra", photo: "/assets/arjun-mehra.jpg", year: 2025, role: "Software Engineer", company: "TCS", category: "Tech", email: "arjun@example.com", linkedin: "linkedin.com/in/arjunmehra" },
   { id: 8, name: "Neha Sharma", photo: "/assets/neha-sharma.jpg", year: 2026, role: "Research Scholar", company: "IIT Delhi", category: "Research", email: "neha@example.com", linkedin: "linkedin.com/in/nehasharma" },
   { id: 9, name: "Rohan Iyer", photo: "/assets/rohan-iyer.jpg", year: 2027, role: "Investment Analyst", company: "HDFC Bank", category: "Finance", email: "rohan@example.com", linkedin: "linkedin.com/in/rohaniyer" },
-  { id: 10, name: "Ananya Gupta", photo: "/assets/ananya-gupta.jpg", year: 2028, role: "UX Designer", company: "Flipkart", category: "Creative", email: "ananya@example.com", linkedin: "linkedin.com/in/ananyagupta" }
+  { id: 10, name: "Ananya Gupta", photo: "/assets/ananya-gupta.jpg", year: 2028, role: "UX Designer", company: "Flipkart", category: "Creative", email: "ananya@example.com", linkedin: "linkedin.com/in/ananyagupta" },
+  { id: 10, name: "Sreeram Subhramaniyan", photo: "/assets/sreeram-subhramaniyan.jpg", year: 2026, role: "Cybersecurity Analyst", company: "Deloitte", category: "Tech", email: "sreeram@example.com", linkedin: "linkedin.com/in/sreeram" }
 ];
 
 const mentors = [
@@ -85,7 +86,7 @@ function renderAlumni() {
     );
 
     grid.innerHTML = filtered.map((alumni, index) => `
-      <div class="alumni-card scale-in" style="animation-delay: ${index * 75}ms;">
+      <div class="alumni-card fade-in-up" style="animation-delay: ${index * 100}ms;">
         <img src="${alumni.photo}" alt="${alumni.name}" class="alumni-photo">
         <h3 class="alumni-name">${alumni.name}</h3>
         <span class="badge badge-gradient">Class of ${alumni.year}</span>
@@ -154,8 +155,8 @@ async function renderMentors() {
     }
 
     if (state.activeMentorTab === 'find') {
-      content.innerHTML = `<div class="mentor-grid fade-in">${mentors.map(m => `
-        <div class="mentor-card scale-in">
+      content.innerHTML = `<div class="mentor-grid fade-in">${mentors.map((m, index) => `
+        <div class="mentor-card fade-in-up" style="animation-delay: ${index * 100}ms;">
           <img src="${m.photo}" alt="${m.name}" class="alumni-photo">
           <h3 class="alumni-name">${m.name}</h3>
           <p style="font-size: 0.875rem; color: var(--muted-foreground); margin-bottom: 0.5rem;">${m.expertise}</p>
@@ -202,8 +203,8 @@ document.querySelectorAll('[data-tab]').forEach(btn => {
 function renderStories() {
   const container = document.getElementById('storiesContainer');
   if (container) {
-    container.innerHTML = stories.map(s => `
-      <div class="story-card scale-in">
+    container.innerHTML = stories.map((s, index) => `
+      <div class="story-card fade-in-up" style="animation-delay: ${index * 150}ms;">
         <div class="story-header">
           <img src="${s.photo}" alt="${s.name}" class="story-photo">
           <div class="story-title-section">
@@ -231,7 +232,7 @@ function toggleStory(id) {
 const faqAccordion = document.getElementById('faqAccordion');
 if (faqAccordion) {
   faqAccordion.innerHTML = faqs.map((faq, i) => `
-    <div class="accordion-item scale-in" style="animation-delay: ${i * 50}ms;">
+    <div class="accordion-item fade-in-up" style="animation-delay: ${i * 100}ms;">
       <button class="accordion-header" onclick="toggleAccordion(${i})">${faq.question}<svg class="expand-icon" id="icon-${i}" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
       <div class="accordion-content" id="content-${i}">${faq.answer}</div>
     </div>
@@ -258,8 +259,8 @@ async function renderEvents() {
       await new Promise(resolve => setTimeout(resolve, 300)); // Wait for fade-out animation
     }
 
-    eventsGrid.innerHTML = `<div class="alumni-grid fade-in">${events.map(e => `
-      <div class="event-card scale-in">
+    eventsGrid.innerHTML = `<div class="alumni-grid fade-in">${events.map((e, index) => `
+      <div class="event-card fade-in-up" style="animation-delay: ${index * 100}ms;">
         <div class="event-header">
           <span class="event-type-badge">${e.type === 'online' ? '🌐 Online' : '📍 In-Person'}</span>
           <span class="event-attendees">👤 ${e.attendees}</span>
