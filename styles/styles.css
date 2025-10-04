@@ -214,11 +214,16 @@ body {
 }
 
 .learn-more-btn {
-  padding: 1rem 2rem;
+  padding: 0.7rem 2rem;
   background-color: transparent;
   border: 2px solid #4c1d65a7;
   animation: fade-in-up 1.4s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
   box-shadow: 0 10px 25px rgba(169, 85, 247, 0.2);
+}
+
+.learn-more-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 35px rgba(169, 85, 247, 0.5);
 }
 
 .glow {
