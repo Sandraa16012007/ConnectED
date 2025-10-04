@@ -66,7 +66,7 @@ No backend required. Just a modern browser.
 git clone https://github.com/yourusername/connected.git
 cd connected
 
-
+---
 
 ## 🚀 Future Scope  
 - Authentication for alumni verification  
