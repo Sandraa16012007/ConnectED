@@ -173,10 +173,6 @@ body {
   transition: width 1s ease, height 1s ease;
 }
 
-.get-started-btn {
-  animation: fade-in-up 1.4s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
-}
-
 .btn:hover::before {
   width: 400px;
   height: 400px;
@@ -185,7 +181,6 @@ body {
 .btn-primary {
   background: linear-gradient(135deg, var(--primary), var(--accent));
   color: white;
-  animation: fade-in-up 1.4s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
   box-shadow: 0 10px 25px rgba(169, 85, 247, 0.2);
 }
 
@@ -210,7 +205,6 @@ body {
 .btn-lg {
   padding: 0.75rem 2rem;
   font-size: 1rem;
-  background-color: white;
 }
 
 .learn-more-btn {

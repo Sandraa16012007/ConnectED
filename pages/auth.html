@@ -125,6 +125,7 @@
         .form-box button {
             width: 100%;
             margin-top: 15px;
+            font-size: 1rem;
             padding: 12px;
             border-radius: 8px;
             border: none;
@@ -159,8 +160,22 @@
             flex-direction: row;
             justify-content: space-between;
             gap: 10px;
-            margin-top: 20px;
-            margin-bottom: 20px;
+            margin-top: 10px;
+            margin-bottom: 40px;
+        }
+
+        .role-selection .auth-button {
+            flex: 1;
+            height: 100%;
+            padding: 10px;
+            font-size: 0.9rem;
+            border-radius: 8px;
+            border: none;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
         }
 
 
@@ -255,8 +270,8 @@
                     <input type="email" placeholder="Email" required />
                     <input type="password" placeholder="Password" required />
                     <div class="role-selection">
-                        <a href="directory.html"><button type="button">Sign up as Student</button></a>
-                        <button type="button">Sign up as Mentor</button>
+                        <a href="directory.html"><button class="auth-button"type="button">Sign up as Student</button></a>
+                        <a href="directory.html"><button class="auth-button" type="button">Sign up as Mentor</button></a>
                     </div>
                 </form>
                 <div class="toggle-link" onclick="toggleAuth('login')">

@@ -1,35 +1,48 @@
 // ===== Data =====
 const alumniData = [
-  { id: 1, name: "Sarah Johnson", photo: "https://i.pravatar.cc/150?img=1", year: 2018, role: "Senior Software Engineer", company: "Google", category: "Tech", email: "sarah@example.com", linkedin: "linkedin.com/in/sarahj" },
-  { id: 2, name: "Michael Chen", photo: "https://i.pravatar.cc/150?img=2", year: 2019, role: "Investment Analyst", company: "Goldman Sachs", category: "Finance", email: "michael@example.com", linkedin: "linkedin.com/in/michaelc" },
-  { id: 3, name: "Emily Rodriguez", photo: "https://i.pravatar.cc/150?img=3", year: 2017, role: "PhD Researcher", company: "MIT", category: "Research", email: "emily@example.com", linkedin: "linkedin.com/in/emilyr" },
-  { id: 4, name: "David Kim", photo: "https://i.pravatar.cc/150?img=4", year: 2020, role: "UX Designer", company: "Adobe", category: "Creative", email: "david@example.com", linkedin: "linkedin.com/in/davidk" },
-  { id: 5, name: "Lisa Anderson", photo: "https://i.pravatar.cc/150?img=5", year: 2019, role: "Data Scientist", company: "Meta", category: "Tech", email: "lisa@example.com", linkedin: "linkedin.com/in/lisaa" },
-  { id: 6, name: "James Wilson", photo: "https://i.pravatar.cc/150?img=6", year: 2018, role: "Financial Advisor", company: "Morgan Stanley", category: "Finance", email: "james@example.com", linkedin: "linkedin.com/in/jamesw" },
+  { id: 1, name: "Mithali Sen", photo: "/assets/mithali-sen.jpg", year: 2026, role: "Senior Software Engineer", company: "Google", category: "Tech", email: "mithalisen@example.com", linkedin: "linkedin.com/in/mithalis" },
+  { id: 2, name: "Aarav Sharma", photo: "/assets/aarav-sharma.jpg", year: 2025, role: "Investment Analyst", company: "Goldman Sachs", category: "Finance", email: "aarav@example.com", linkedin: "linkedin.com/in/aarav" },
+  { id: 3, name: "Tanushree Pant", photo: "/assets/tanushree-pant.jpg", year: 2027, role: "PhD Researcher", company: "MIT", category: "Research", email: "tanushree@example.com", linkedin: "linkedin.com/in/tanushree" },
+  { id: 4, name: "Pankaj Saxena", photo: "/assets/pankaj-saxena.jpg", year: 2026, role: "UX Designer", company: "Adobe", category: "Creative", email: "pankaj@example.com", linkedin: "linkedin.com/in/pankaj" },
+  { id: 5, name: "Shubham Malhotra", photo: "/assets/shubham-malhotra.jpg", year: 2025, role: "Data Scientist", company: "Meta", category: "Tech", email: "shubham@example.com", linkedin: "linkedin.com/in/shubham" },
+  { id: 6, name: "Bhumika Patel", photo: "/assets/bhumika-patel.jpg", year: 2028, role: "Financial Advisor", company: "Morgan Stanley", category: "Finance", email: "bhumika@example.com", linkedin: "linkedin.com/in/bhumika" },
+  { id: 7, name: "Arjun Mehra", photo: "/assets/arjun-mehra.jpg", year: 2025, role: "Software Engineer", company: "TCS", category: "Tech", email: "arjun@example.com", linkedin: "linkedin.com/in/arjunmehra" },
+  { id: 8, name: "Neha Sharma", photo: "/assets/neha-sharma.jpg", year: 2026, role: "Research Scholar", company: "IIT Delhi", category: "Research", email: "neha@example.com", linkedin: "linkedin.com/in/nehasharma" },
+  { id: 9, name: "Rohan Iyer", photo: "/assets/rohan-iyer.jpg", year: 2027, role: "Investment Analyst", company: "HDFC Bank", category: "Finance", email: "rohan@example.com", linkedin: "linkedin.com/in/rohaniyer" },
+  { id: 10, name: "Ananya Gupta", photo: "/assets/ananya-gupta.jpg", year: 2028, role: "UX Designer", company: "Flipkart", category: "Creative", email: "ananya@example.com", linkedin: "linkedin.com/in/ananyagupta" }
 ];
 
 const mentors = [
-  { id: 1, name: "Alex Martinez", photo: "https://i.pravatar.cc/150?img=7", expertise: "Software Development", company: "Amazon", available: true },
-  { id: 2, name: "Rachel Green", photo: "https://i.pravatar.cc/150?img=8", expertise: "Product Management", company: "Apple", available: true },
-  { id: 3, name: "Tom Bradley", photo: "https://i.pravatar.cc/150?img=9", expertise: "Data Science", company: "Netflix", available: false },
-  { id: 4, name: "Nina Patel", photo: "https://i.pravatar.cc/150?img=10", expertise: "Marketing Strategy", company: "Spotify", available: true },
+  { id: 1, name: "Ananya Gupta", photo: "/assets/ananya-gupta.jpg", expertise: "Software Development", company: "Amazon", available: true },
+  { id: 2, name: "Arjun Mehra", photo: "/assets/arjun-mehra.jpg", expertise: "Product Management", company: "Apple", available: true },
+  { id: 3, name: "Shubham Malhotra", photo: "/assets/shubham-malhotra.jpg", expertise: "Data Science", company: "Netflix", available: false },
+  { id: 4, name: "Nina Patel", photo: "/assets/nina-patel.jpeg", expertise: "Marketing Strategy", company: "Spotify", available: true },
 ];
 
 const stories = [
-  { id: 1, name: "Priya Sharma", photo: "https://i.pravatar.cc/150?img=11", title: "Founded Successful AI Startup", summary: "Raised $5M in Series A funding for her AI-powered healthcare platform", fullStory: "After graduating, Priya worked at a tech giant for 2 years before taking the leap to start her own company. Her platform uses AI to predict patient health risks, and it's now used in over 50 hospitals across the country." },
-  { id: 2, name: "Rahul Verma", photo: "https://i.pravatar.cc/150?img=12", title: "PhD from Stanford University", summary: "Received full scholarship for Machine Learning research", fullStory: "Rahul's passion for research led him to pursue a PhD at Stanford. He credits the strong academic foundation from our institution and guidance from alumni already in academia." },
-  { id: 3, name: "Anjali Desai", photo: "https://i.pravatar.cc/150?img=13", title: "Senior Manager at Microsoft", summary: "Led a team of 50+ engineers on cloud infrastructure", fullStory: "Starting as a software engineer, Anjali quickly rose through the ranks at Microsoft. She emphasizes the importance of continuous learning and networking." },
+  { id: 1, name: "Priya Sharma", photo: "/assets/bhumika-patel.jpg", title: "Founded Successful AI Startup", summary: "Raised $5M in Series A funding for her AI-powered healthcare platform", fullStory: "After graduating, Priya worked at a tech giant for 2 years before taking the leap to start her own company. Her platform uses AI to predict patient health risks, and it's now used in over 50 hospitals across the country." },
+  { id: 2, name: "Rahul Verma", photo: "/assets/shubham-malhotra.jpg", title: "PhD from Stanford University", summary: "Received full scholarship for Machine Learning research", fullStory: "Rahul's passion for research led him to pursue a PhD at Stanford. He credits the strong academic foundation from our institution and guidance from alumni already in academia." },
+  { id: 3, name: "Anjali Desai", photo: "/assets/tanushree-pant.jpg", title: "Senior Manager at Microsoft", summary: "Led a team of 50+ engineers on cloud infrastructure", fullStory: "Starting as a software engineer, Anjali quickly rose through the ranks at Microsoft. She emphasizes the importance of continuous learning and networking." },
 ];
 
 const upcomingEvents = [
-  { id: 1, title: "Career Growth in Tech Industry", date: "March 15, 2025", type: "online", location: "Zoom", attendees: 150, speaker: "Sarah Johnson", description: "Learn about career advancement strategies" },
-  { id: 2, title: "Alumni Networking Meetup", date: "March 22, 2025", type: "offline", location: "Campus Auditorium", attendees: 80, speaker: "Multiple Alumni", description: "Network with alumni from various industries" },
-  { id: 3, title: "Entrepreneurship Workshop", date: "April 5, 2025", type: "online", location: "Google Meet", attendees: 120, speaker: "Priya Sharma", description: "Insights on building and scaling a startup" },
+  { id: 1, title: "Career Growth in Tech Industry", date: "October 15, 2025", type: "online", location: "Zoom", attendees: 150, speaker: "Sarah Johnson", description: "Learn about career advancement strategies" },
+  { id: 2, title: "Alumni Networking Meetup", date: "October 22, 2025", type: "offline", location: "Campus Auditorium", attendees: 80, speaker: "Multiple Alumni", description: "Network with alumni from various industries" },
+  { id: 3, title: "Entrepreneurship Workshop", date: "October 5, 2025", type: "online", location: "Google Meet", attendees: 120, speaker: "Priya Sharma", description: "Insights on building and scaling a startup" },
+  { id: 4, title: "Higher Studies Abroad Session", date: "October 12, 2025", type: "online", location: "Microsoft Teams", attendees: 95, speaker: "Dr. Ananya Gupta", description: "Guidance on applications, scholarships, and university life abroad" },
+  { id: 5, title: "Finance & Investment Strategies", date: "October 20, 2025", type: "offline", location: "Campus Seminar Hall", attendees: 60, speaker: "Rohan Iyer", description: "Learn how to navigate careers in finance and make smart investments" },
+  { id: 6, title: "Creative Careers in Design", date: "November 2, 2025", type: "online", location: "Zoom", attendees: 130, speaker: "Meera Khanna", description: "Exploring opportunities in UX, product design, and creative industries" },
+  { id: 7, title: "Placement Preparation Bootcamp", date: "October 10, 2025", type: "offline", location: "Campus Training Room", attendees: 200, speaker: "Alumni Panel", description: "Mock interviews, resume reviews, and placement tips from alumni" },
+  { id: 8, title: "AI & Future of Work", date: "November 18, 2025", type: "online", location: "Google Meet", attendees: 175, speaker: "Karan Desai", description: "A look into AI trends, automation, and future career opportunities" },
+  { id: 9, title: "Alumni Sports & Cultural Day", date: "October 25, 2025", type: "offline", location: "Campus Grounds", attendees: 250, speaker: "Multiple Alumni", description: "Celebrate with alumni through sports matches, music, and cultural events" }
 ];
 
 const pastEvents = [
-  { id: 4, title: "Breaking into Finance", date: "February 10, 2025", type: "online", location: "Zoom", attendees: 200, speaker: "Michael Chen", description: "Strategies for landing jobs in top financial institutions" },
-  { id: 5, title: "Research Opportunities Abroad", date: "January 28, 2025", type: "offline", location: "Seminar Hall", attendees: 90, speaker: "Emily Rodriguez", description: "How to apply for PhD programs" },
+  { id: 4, title: "Breaking into Finance", date: "February 10, 2025", type: "online", location: "Zoom", attendees: 200, speaker: "Pankaj Saxena", description: "Strategies for landing jobs in top financial institutions" },
+  { id: 5, title: "Research Opportunities Abroad", date: "January 28, 2025", type: "offline", location: "Seminar Hall", attendees: 90, speaker: "Joseph Saji", description: "How to apply for PhD programs" },
+  { id: 6, title: "AI & Machine Learning Trends", date: "March 12, 2025", type: "online", location: "Microsoft Teams", attendees: 250, speaker: "Dr. Arjun Mehta", description: "Explore the latest breakthroughs in AI and their career opportunities" },
+  { id: 7, title: "Women in Leadership", date: "April 2, 2025", type: "offline", location: "Conference Room A", attendees: 110, speaker: "Ananya Deshpande", description: "Panel discussion on challenges and opportunities for women leaders" },
+  { id: 8, title: "Sustainability Careers", date: "April 18, 2025", type: "online", location: "Google Meet", attendees: 175, speaker: "Ravi Kapoor", description: "Building a career in renewable energy and sustainability sectors" }
 ];
 
 // ===== State =====
@@ -71,8 +84,8 @@ function renderAlumni() {
       (state.selectedCategory === 'all' || a.category === state.selectedCategory)
     );
 
-    grid.innerHTML = filtered.map(alumni => `
-      <div class="alumni-card scale-in">
+    grid.innerHTML = filtered.map((alumni, index) => `
+      <div class="alumni-card scale-in" style="animation-delay: ${index * 75}ms;">
         <img src="${alumni.photo}" alt="${alumni.name}" class="alumni-photo">
         <h3 class="alumni-name">${alumni.name}</h3>
         <span class="badge badge-gradient">Class of ${alumni.year}</span>
@@ -162,7 +175,7 @@ async function renderMentors() {
         <div class="benefit-list">${['Share your industry insights', 'Guide students in their career path', 'Build meaningful connections', 'Give back to the community'].map(b => `
           <div class="benefit-item"><div class="benefit-dot"><div class="benefit-dot-inner"></div></div><span>${b}</span></div>
         `).join('')}</div>
-        <button class="btn btn-primary btn-lg glow">Apply to Become a Mentor</button>
+        <a href="/pages/auth.html"><button class="btn btn-primary btn-lg glow">Apply to Become a Mentor</button></a>
       </div>`;
     }
   }
@@ -248,7 +261,7 @@ async function renderEvents() {
     eventsGrid.innerHTML = `<div class="alumni-grid fade-in">${events.map(e => `
       <div class="event-card scale-in">
         <div class="event-header">
-          <span class="event-type-badge">${e.type === 'online'? '🌐 Online' : '📍 In-Person'}</span>
+          <span class="event-type-badge">${e.type === 'online' ? '🌐 Online' : '📍 In-Person'}</span>
           <span class="event-attendees">👤 ${e.attendees}</span>
         </div>
         <h3 class="event-title">${e.title}</h3>
