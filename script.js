@@ -1,0 +1,253 @@
+// ===== Data =====
+const alumniData = [
+  { id: 1, name: "Sarah Johnson", photo: "https://i.pravatar.cc/150?img=1", year: 2018, role: "Senior Software Engineer", company: "Google", category: "Tech", email: "sarah@example.com", linkedin: "linkedin.com/in/sarahj" },
+  { id: 2, name: "Michael Chen", photo: "https://i.pravatar.cc/150?img=2", year: 2019, role: "Investment Analyst", company: "Goldman Sachs", category: "Finance", email: "michael@example.com", linkedin: "linkedin.com/in/michaelc" },
+  { id: 3, name: "Emily Rodriguez", photo: "https://i.pravatar.cc/150?img=3", year: 2017, role: "PhD Researcher", company: "MIT", category: "Research", email: "emily@example.com", linkedin: "linkedin.com/in/emilyr" },
+  { id: 4, name: "David Kim", photo: "https://i.pravatar.cc/150?img=4", year: 2020, role: "UX Designer", company: "Adobe", category: "Creative", email: "david@example.com", linkedin: "linkedin.com/in/davidk" },
+  { id: 5, name: "Lisa Anderson", photo: "https://i.pravatar.cc/150?img=5", year: 2019, role: "Data Scientist", company: "Meta", category: "Tech", email: "lisa@example.com", linkedin: "linkedin.com/in/lisaa" },
+  { id: 6, name: "James Wilson", photo: "https://i.pravatar.cc/150?img=6", year: 2018, role: "Financial Advisor", company: "Morgan Stanley", category: "Finance", email: "james@example.com", linkedin: "linkedin.com/in/jamesw" },
+];
+
+const mentors = [
+  { id: 1, name: "Alex Martinez", photo: "https://i.pravatar.cc/150?img=7", expertise: "Software Development", company: "Amazon", available: true },
+  { id: 2, name: "Rachel Green", photo: "https://i.pravatar.cc/150?img=8", expertise: "Product Management", company: "Apple", available: true },
+  { id: 3, name: "Tom Bradley", photo: "https://i.pravatar.cc/150?img=9", expertise: "Data Science", company: "Netflix", available: false },
+  { id: 4, name: "Nina Patel", photo: "https://i.pravatar.cc/150?img=10", expertise: "Marketing Strategy", company: "Spotify", available: true },
+];
+
+const stories = [
+  { id: 1, name: "Priya Sharma", photo: "https://i.pravatar.cc/150?img=11", title: "Founded Successful AI Startup", summary: "Raised $5M in Series A funding for her AI-powered healthcare platform", fullStory: "After graduating, Priya worked at a tech giant for 2 years before taking the leap to start her own company. Her platform uses AI to predict patient health risks, and it's now used in over 50 hospitals across the country." },
+  { id: 2, name: "Rahul Verma", photo: "https://i.pravatar.cc/150?img=12", title: "PhD from Stanford University", summary: "Received full scholarship for Machine Learning research", fullStory: "Rahul's passion for research led him to pursue a PhD at Stanford. He credits the strong academic foundation from our institution and guidance from alumni already in academia." },
+  { id: 3, name: "Anjali Desai", photo: "https://i.pravatar.cc/150?img=13", title: "Senior Manager at Microsoft", summary: "Led a team of 50+ engineers on cloud infrastructure", fullStory: "Starting as a software engineer, Anjali quickly rose through the ranks at Microsoft. She emphasizes the importance of continuous learning and networking." },
+];
+
+const upcomingEvents = [
+  { id: 1, title: "Career Growth in Tech Industry", date: "March 15, 2025", type: "online", location: "Zoom", attendees: 150, speaker: "Sarah Johnson", description: "Learn about career advancement strategies" },
+  { id: 2, title: "Alumni Networking Meetup", date: "March 22, 2025", type: "offline", location: "Campus Auditorium", attendees: 80, speaker: "Multiple Alumni", description: "Network with alumni from various industries" },
+  { id: 3, title: "Entrepreneurship Workshop", date: "April 5, 2025", type: "online", location: "Google Meet", attendees: 120, speaker: "Priya Sharma", description: "Insights on building and scaling a startup" },
+];
+
+const pastEvents = [
+  { id: 4, title: "Breaking into Finance", date: "February 10, 2025", type: "online", location: "Zoom", attendees: 200, speaker: "Michael Chen", description: "Strategies for landing jobs in top financial institutions" },
+  { id: 5, title: "Research Opportunities Abroad", date: "January 28, 2025", type: "offline", location: "Seminar Hall", attendees: 90, speaker: "Emily Rodriguez", description: "How to apply for PhD programs" },
+];
+
+// ===== State =====
+let state = {
+  selectedYear: 'all',
+  selectedCategory: 'all',
+  showContact: null,
+  activeMentorTab: 'find',
+  activeEventTab: 'upcoming',
+  expandedStory: null,
+};
+
+// ===== Mobile Menu =====
+const menuToggle = document.getElementById('menuToggle');
+const mobileMenu = document.getElementById('mobileMenu');
+const menuIcon = document.getElementById('menuIcon');
+const closeIcon = document.getElementById('closeIcon');
+
+menuToggle.addEventListener('click', () => {
+  mobileMenu.classList.toggle('active');
+  menuIcon.classList.toggle('hidden');
+  closeIcon.classList.toggle('hidden');
+});
+
+document.querySelectorAll('.nav-mobile-link').forEach(link => {
+  link.addEventListener('click', () => {
+    mobileMenu.classList.remove('active');
+    menuIcon.classList.remove('hidden');
+    closeIcon.classList.add('hidden');
+  });
+});
+
+// ===== Alumni Directory =====
+function renderAlumni() {
+  const grid = document.getElementById('alumniGrid');
+  const filtered = alumniData.filter(a => 
+    (state.selectedYear === 'all' || a.year.toString() === state.selectedYear) &&
+    (state.selectedCategory === 'all' || a.category === state.selectedCategory)
+  );
+  
+  grid.innerHTML = filtered.map(alumni => `
+    <div class="alumni-card scale-in">
+      <img src="${alumni.photo}" alt="${alumni.name}" class="alumni-photo">
+      <h3 class="alumni-name">${alumni.name}</h3>
+      <span class="badge badge-gradient">Class of ${alumni.year}</span>
+      <div class="alumni-role">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+        ${alumni.role}
+      </div>
+      <div class="alumni-role">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+        ${alumni.company}
+      </div>
+      <span class="badge badge-outline">${alumni.category}</span>
+      <button class="btn btn-primary contact-btn" onclick="toggleContact(${alumni.id})">
+        ${state.showContact === alumni.id ? 'Hide Contact' : 'Contact'}
+      </button>
+      ${state.showContact === alumni.id ? `
+        <div class="contact-info fade-in">
+          <a href="mailto:${alumni.email}" class="contact-link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            ${alumni.email}
+          </a>
+          <a href="https://${alumni.linkedin}" target="_blank" class="contact-link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path></svg>
+            LinkedIn Profile
+          </a>
+        </div>
+      ` : ''}
+    </div>
+  `).join('');
+}
+
+function toggleContact(id) {
+  state.showContact = state.showContact === id ? null : id;
+  renderAlumni();
+}
+
+document.querySelectorAll('#yearFilters .filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('#yearFilters .filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    state.selectedYear = btn.dataset.filter;
+    renderAlumni();
+  });
+});
+
+document.querySelectorAll('#categoryFilters .filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('#categoryFilters .filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    state.selectedCategory = btn.dataset.filter;
+    renderAlumni();
+  });
+});
+
+// ===== Mentor Connect =====
+async function renderMentors() {
+  const content = document.getElementById('mentorTabContent');
+  const currentContent = content.firstChild;
+
+  if (currentContent) {
+    currentContent.classList.remove('fade-in');
+    currentContent.classList.add('fade-out');
+    await new Promise(resolve => setTimeout(resolve, 300)); // Wait for fade-out animation
+  }
+
+  if (state.activeMentorTab === 'find') {
+    content.innerHTML = `<div class="mentor-grid fade-in">${mentors.map(m => `
+      <div class="mentor-card scale-in">
+        <img src="${m.photo}" alt="${m.name}" class="alumni-photo">
+        <h3 class="alumni-name">${m.name}</h3>
+        <p style="font-size: 0.875rem; color: var(--muted-foreground); margin-bottom: 0.5rem;">${m.expertise}</p>
+        <p class="alumni-role" style="font-weight: 500; margin-bottom: 1rem;">${m.company}</p>
+        <span class="badge" style="background: ${m.available ? 'hsl(190, 95%, 45%)' : 'hsl(220, 10%, 50%)'}; color: white; margin-bottom: 1rem;">${m.available ? 'Available' : 'Busy'}</span>
+        <button class="btn btn-primary w-full contact-btn" ${!m.available ? 'disabled' : ''}>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+          Connect
+        </button>
+      </div>
+    `).join('')}</div>`;
+  } else {
+    content.innerHTML = `<div class="become-mentor-card fade-in">
+      <div class="mentor-icon-wrapper"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><polyline points="17 11 19 13 23 9"></polyline></svg></div>
+      <h3 style="font-size: 1.5rem; font-weight: bold; margin-bottom: 1rem;">Share Your Journey</h3>
+      <p style="color: var(--muted-foreground); margin-bottom: 2rem;">Help the next generation of students by sharing your knowledge and experiences.</p>
+      <div class="benefit-list">${['Share your industry insights', 'Guide students in their career path', 'Build meaningful connections', 'Give back to the community'].map(b => `
+        <div class="benefit-item"><div class="benefit-dot"><div class="benefit-dot-inner"></div></div><span>${b}</span></div>
+      `).join('')}</div>
+      <button class="btn btn-primary btn-lg glow">Apply to Become a Mentor</button>
+    </div>`;
+  }
+}
+
+document.querySelectorAll('[data-tab]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const section = btn.closest('section').id;
+    if (section === 'mentorship') {
+      document.querySelectorAll('#mentorship .tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      state.activeMentorTab = btn.dataset.tab;
+      renderMentors();
+    } else if (section === 'events') {
+      document.querySelectorAll('#events .tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      state.activeEventTab = btn.dataset.tab;
+      renderEvents();
+    }
+  });
+});
+
+// ===== Success Stories =====
+function renderStories() {
+  document.getElementById('storiesContainer').innerHTML = stories.map(s => `
+    <div class="story-card scale-in">
+      <div class="story-header">
+        <img src="${s.photo}" alt="${s.name}" class="story-photo">
+        <div class="story-title-section">
+          <div class="story-icon-name"><div class="story-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></div><h3 class="story-name">${s.name}</h3></div>
+          <h4 class="story-title gradient-text">${s.title}</h4>
+          <p class="story-summary">${s.summary}</p>
+        </div>
+      </div>
+      ${state.expandedStory === s.id ? `<div class="story-full fade-in">${s.fullStory}</div>` : ''}
+      <button class="expand-btn" onclick="toggleStory(${s.id})">
+        ${state.expandedStory === s.id ? 'Show Less' : 'Read More'}
+        <svg class="expand-icon ${state.expandedStory === s.id ? 'rotated' : ''}" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </button>
+    </div>
+  `).join('');
+}
+
+function toggleStory(id) {
+  state.expandedStory = state.expandedStory === id ? null : id;
+  renderStories();
+}
+
+// ===== FAQ =====
+const faqAccordion = document.getElementById('faqAccordion');
+if (faqAccordion) {
+  faqAccordion.innerHTML = faqs.map((faq, i) => `
+    <div class="accordion-item scale-in" style="animation-delay: ${i * 50}ms;">
+      <button class="accordion-header" onclick="toggleAccordion(${i})">${faq.question}<svg class="expand-icon" id="icon-${i}" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+      <div class="accordion-content" id="content-${i}">${faq.answer}</div>
+    </div>
+  `).join('');
+}
+
+function toggleAccordion(index) {
+  const content = document.getElementById(`content-${index}`);
+  const icon = document.getElementById(`icon-${index}`);
+  content.classList.toggle('active');
+  icon.classList.toggle('rotated');
+}
+
+// ===== Events =====
+function renderEvents() {
+  const events = state.activeEventTab === 'upcoming' ? upcomingEvents : pastEvents;
+  document.getElementById('eventsGrid').innerHTML = `<div class="alumni-grid fade-in">${events.map(e => `
+    <div class="event-card scale-in">
+      <div class="event-header">
+        <span class="event-type-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">${e.type === 'online' ? '<rect x="2" y="3" width="20" height="14" rx="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line>' : '<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>'}</svg>${e.type === 'online' ? 'Online' : 'In-Person'}</span>
+        <span class="event-attendees"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path></svg>${e.attendees}</span>
+      </div>
+      <h3 class="event-title">${e.title}</h3>
+      <div class="event-details">
+        <div class="event-detail-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"></rect></svg>${e.date}</div>
+        <div class="event-detail-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path></svg>${e.location}</div>
+      </div>
+      <p class="event-description">${e.description}</p>
+      <div class="event-speaker"><div class="speaker-avatar"></div><div class="speaker-info"><div class="speaker-label">Speaker</div><div class="speaker-name">${e.speaker}</div></div></div>
+      <button class="btn ${state.activeEventTab === 'upcoming' ? 'btn-primary' : 'btn-outline'} w-full">${state.activeEventTab === 'upcoming' ? 'Register Now' : 'View Recording'}</button>
+    </div>
+  `).join('')}</div>`;
+}
+
+// Initialize
+renderAlumni();
+renderMentors();
+renderStories();
+renderEvents();
