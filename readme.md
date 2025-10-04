@@ -37,12 +37,41 @@ ConnectED is a simple yet impactful web platform designed to **bridge the gap be
 - **Simple UX**: Clear labels, icons, and intuitive navigation for juniors/seniors.  
 - **Scalable Structure**: Alumni, mentors, and events follow a consistent data-card format.  
 
+--- 
+
+## 🚀 Demo
+
+### Live Demo
+[Click here to view ConnectED live](https://yourdeploymentlink.com)
+
+### Screenshots
+**Desktop View:**  
+![Desktop Screenshot](link-to-desktop-screenshot)  
+
+**Mobile View:**  
+![Mobile Screenshot](link-to-mobile-screenshot)  
+
+### Interactive Features GIF
+![Interactive Features](link-to-gif)  
+
 ---
+
+## 🛠️ Getting Started
+
+### Prerequisites
+No backend required. Just a modern browser.
+
+### Installation
+```bash
+git clone https://github.com/yourusername/connected.git
+cd connected
+
+
 
 ## 🚀 Future Scope  
 - Authentication for alumni verification  
 - Chat/discussion forum for real-time Q&A  
 - Event RSVP & reminders  
-- Admin dashboard for content management  
+- Admin dashboard for content management 
 
 ---
