@@ -45,13 +45,15 @@ ConnectED is a simple yet impactful web platform designed to **bridge the gap be
 [Click here to view ConnectED live](https://yourdeploymentlink.com)
 
 ### Screenshots
-
-![Desktop Screenshot](link-to-desktop-screenshot)  
-
-![Mobile Screenshot](link-to-mobile-screenshot)  
+<img width="1842" height="896" alt="image" src="https://github.com/user-attachments/assets/55c21b2f-0fed-4d4c-83b5-26c86543d2d5" />
+ 
 
 ### Interactive Features GIF
-![Interactive Features](link-to-gif)  
+![connected-gif](https://github.com/user-attachments/assets/be577620-0d58-47a4-a334-5483bbc34a02)
+
+---
+
+![20251004-1948-49 5498173](https://github.com/user-attachments/assets/bd3cda13-b28e-469c-95e5-2ae8961b637c)
 
 ---
 
