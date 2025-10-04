@@ -65,42 +65,44 @@ document.querySelectorAll('.nav-mobile-link').forEach(link => {
 // ===== Alumni Directory =====
 function renderAlumni() {
   const grid = document.getElementById('alumniGrid');
-  const filtered = alumniData.filter(a => 
-    (state.selectedYear === 'all' || a.year.toString() === state.selectedYear) &&
-    (state.selectedCategory === 'all' || a.category === state.selectedCategory)
-  );
-  
-  grid.innerHTML = filtered.map(alumni => `
-    <div class="alumni-card scale-in">
-      <img src="${alumni.photo}" alt="${alumni.name}" class="alumni-photo">
-      <h3 class="alumni-name">${alumni.name}</h3>
-      <span class="badge badge-gradient">Class of ${alumni.year}</span>
-      <div class="alumni-role">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
-        ${alumni.role}
-      </div>
-      <div class="alumni-role">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
-        ${alumni.company}
-      </div>
-      <span class="badge badge-outline">${alumni.category}</span>
-      <button class="btn btn-primary contact-btn" onclick="toggleContact(${alumni.id})">
-        ${state.showContact === alumni.id ? 'Hide Contact' : 'Contact'}
-      </button>
-      ${state.showContact === alumni.id ? `
-        <div class="contact-info fade-in">
-          <a href="mailto:${alumni.email}" class="contact-link">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-            ${alumni.email}
-          </a>
-          <a href="https://${alumni.linkedin}" target="_blank" class="contact-link">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path></svg>
-            LinkedIn Profile
-          </a>
+  if (grid) {
+    const filtered = alumniData.filter(a =>
+      (state.selectedYear === 'all' || a.year.toString() === state.selectedYear) &&
+      (state.selectedCategory === 'all' || a.category === state.selectedCategory)
+    );
+
+    grid.innerHTML = filtered.map(alumni => `
+      <div class="alumni-card scale-in">
+        <img src="${alumni.photo}" alt="${alumni.name}" class="alumni-photo">
+        <h3 class="alumni-name">${alumni.name}</h3>
+        <span class="badge badge-gradient">Class of ${alumni.year}</span>
+        <div class="alumni-role">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+          ${alumni.role}
         </div>
-      ` : ''}
-    </div>
-  `).join('');
+        <div class="alumni-role">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+          ${alumni.company}
+        </div>
+        <span class="badge badge-outline">${alumni.category}</span>
+        <button class="btn btn-primary contact-btn" onclick="toggleContact(${alumni.id})">
+          ${state.showContact === alumni.id ? 'Hide Contact' : 'Contact'}
+        </button>
+        ${state.showContact === alumni.id ? `
+          <div class="contact-info fade-in">
+            <a href="mailto:${alumni.email}" class="contact-link">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              ${alumni.email}
+            </a>
+            <a href="https://${alumni.linkedin}" target="_blank" class="contact-link">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path></svg>
+              LinkedIn Profile
+            </a>
+          </div>
+        ` : ''}
+      </div>
+    `).join('');
+  }
 }
 
 function toggleContact(id) {
@@ -129,38 +131,40 @@ document.querySelectorAll('#categoryFilters .filter-btn').forEach(btn => {
 // ===== Mentor Connect =====
 async function renderMentors() {
   const content = document.getElementById('mentorTabContent');
-  const currentContent = content.firstChild;
+  if (content) {
+    const currentContent = content.firstChild;
 
-  if (currentContent) {
-    currentContent.classList.remove('fade-in');
-    currentContent.classList.add('fade-out');
-    await new Promise(resolve => setTimeout(resolve, 300)); // Wait for fade-out animation
-  }
+    if (currentContent) {
+      currentContent.classList.remove('fade-in');
+      currentContent.classList.add('fade-out');
+      await new Promise(resolve => setTimeout(resolve, 300)); // Wait for fade-out animation
+    }
 
-  if (state.activeMentorTab === 'find') {
-    content.innerHTML = `<div class="mentor-grid fade-in">${mentors.map(m => `
-      <div class="mentor-card scale-in">
-        <img src="${m.photo}" alt="${m.name}" class="alumni-photo">
-        <h3 class="alumni-name">${m.name}</h3>
-        <p style="font-size: 0.875rem; color: var(--muted-foreground); margin-bottom: 0.5rem;">${m.expertise}</p>
-        <p class="alumni-role" style="font-weight: 500; margin-bottom: 1rem;">${m.company}</p>
-        <span class="badge" style="background: ${m.available ? 'hsl(190, 95%, 45%)' : 'hsl(220, 10%, 50%)'}; color: white; margin-bottom: 1rem;">${m.available ? 'Available' : 'Busy'}</span>
-        <button class="btn btn-primary w-full contact-btn" ${!m.available ? 'disabled' : ''}>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-          Connect
-        </button>
-      </div>
-    `).join('')}</div>`;
-  } else {
-    content.innerHTML = `<div class="become-mentor-card fade-in">
-      <div class="mentor-icon-wrapper"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><polyline points="17 11 19 13 23 9"></polyline></svg></div>
-      <h3 style="font-size: 1.5rem; font-weight: bold; margin-bottom: 1rem;">Share Your Journey</h3>
-      <p style="color: var(--muted-foreground); margin-bottom: 2rem;">Help the next generation of students by sharing your knowledge and experiences.</p>
-      <div class="benefit-list">${['Share your industry insights', 'Guide students in their career path', 'Build meaningful connections', 'Give back to the community'].map(b => `
-        <div class="benefit-item"><div class="benefit-dot"><div class="benefit-dot-inner"></div></div><span>${b}</span></div>
-      `).join('')}</div>
-      <button class="btn btn-primary btn-lg glow">Apply to Become a Mentor</button>
-    </div>`;
+    if (state.activeMentorTab === 'find') {
+      content.innerHTML = `<div class="mentor-grid fade-in">${mentors.map(m => `
+        <div class="mentor-card scale-in">
+          <img src="${m.photo}" alt="${m.name}" class="alumni-photo">
+          <h3 class="alumni-name">${m.name}</h3>
+          <p style="font-size: 0.875rem; color: var(--muted-foreground); margin-bottom: 0.5rem;">${m.expertise}</p>
+          <p class="alumni-role" style="font-weight: 500; margin-bottom: 1rem;">${m.company}</p>
+          <span class="badge" style="background: ${m.available ? 'hsl(190, 95%, 45%)' : 'hsl(220, 10%, 50%)'}; color: white; margin-bottom: 1rem;">${m.available ? 'Available' : 'Busy'}</span>
+          <button class="btn btn-primary w-full contact-btn" ${!m.available ? 'disabled' : ''}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+            Connect
+          </button>
+        </div>
+      `).join('')}</div>`;
+    } else {
+      content.innerHTML = `<div class="become-mentor-card fade-in">
+        <div class="mentor-icon-wrapper"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><polyline points="17 11 19 13 23 9"></polyline></svg></div>
+        <h3 style="font-size: 1.5rem; font-weight: bold; margin-bottom: 1rem;">Share Your Journey</h3>
+        <p style="color: var(--muted-foreground); margin-bottom: 2rem;">Help the next generation of students by sharing your knowledge and experiences.</p>
+        <div class="benefit-list">${['Share your industry insights', 'Guide students in their career path', 'Build meaningful connections', 'Give back to the community'].map(b => `
+          <div class="benefit-item"><div class="benefit-dot"><div class="benefit-dot-inner"></div></div><span>${b}</span></div>
+        `).join('')}</div>
+        <button class="btn btn-primary btn-lg glow">Apply to Become a Mentor</button>
+      </div>`;
+    }
   }
 }
 
@@ -183,23 +187,26 @@ document.querySelectorAll('[data-tab]').forEach(btn => {
 
 // ===== Success Stories =====
 function renderStories() {
-  document.getElementById('storiesContainer').innerHTML = stories.map(s => `
-    <div class="story-card scale-in">
-      <div class="story-header">
-        <img src="${s.photo}" alt="${s.name}" class="story-photo">
-        <div class="story-title-section">
-          <div class="story-icon-name"><div class="story-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></div><h3 class="story-name">${s.name}</h3></div>
-          <h4 class="story-title gradient-text">${s.title}</h4>
-          <p class="story-summary">${s.summary}</p>
+  const container = document.getElementById('storiesContainer');
+  if (container) {
+    container.innerHTML = stories.map(s => `
+      <div class="story-card scale-in">
+        <div class="story-header">
+          <img src="${s.photo}" alt="${s.name}" class="story-photo">
+          <div class="story-title-section">
+            <div class="story-icon-name"><div class="story-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></div><h3 class="story-name">${s.name}</h3></div>
+            <h4 class="story-title gradient-text">${s.title}</h4>
+            <p class="story-summary">${s.summary}</p>
+          </div>
         </div>
+        ${state.expandedStory === s.id ? `<div class="story-full fade-in">${s.fullStory}</div>` : ''}
+        <button class="expand-btn" onclick="toggleStory(${s.id})">
+          ${state.expandedStory === s.id ? 'Show Less' : 'Read More'}
+          <svg class="expand-icon ${state.expandedStory === s.id ? 'rotated' : ''}" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
       </div>
-      ${state.expandedStory === s.id ? `<div class="story-full fade-in">${s.fullStory}</div>` : ''}
-      <button class="expand-btn" onclick="toggleStory(${s.id})">
-        ${state.expandedStory === s.id ? 'Show Less' : 'Read More'}
-        <svg class="expand-icon ${state.expandedStory === s.id ? 'rotated' : ''}" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
-      </button>
-    </div>
-  `).join('');
+    `).join('');
+  }
 }
 
 function toggleStory(id) {
@@ -226,24 +233,35 @@ function toggleAccordion(index) {
 }
 
 // ===== Events =====
-function renderEvents() {
+async function renderEvents() {
   const events = state.activeEventTab === 'upcoming' ? upcomingEvents : pastEvents;
-  document.getElementById('eventsGrid').innerHTML = `<div class="alumni-grid fade-in">${events.map(e => `
-    <div class="event-card scale-in">
-      <div class="event-header">
-        <span class="event-type-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">${e.type === 'online' ? '<rect x="2" y="3" width="20" height="14" rx="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line>' : '<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>'}</svg>${e.type === 'online' ? 'Online' : 'In-Person'}</span>
-        <span class="event-attendees"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path></svg>${e.attendees}</span>
+  const eventsGrid = document.getElementById('eventsGrid');
+  if (eventsGrid) {
+    const currentContent = eventsGrid.firstChild;
+
+    if (currentContent) {
+      currentContent.classList.remove('fade-in');
+      currentContent.classList.add('fade-out');
+      await new Promise(resolve => setTimeout(resolve, 300)); // Wait for fade-out animation
+    }
+
+    eventsGrid.innerHTML = `<div class="alumni-grid fade-in">${events.map(e => `
+      <div class="event-card scale-in">
+        <div class="event-header">
+          <span class="event-type-badge">${e.type === 'online'? '🌐 Online' : '📍 In-Person'}</span>
+          <span class="event-attendees">👤 ${e.attendees}</span>
+        </div>
+        <h3 class="event-title">${e.title}</h3>
+        <div class="event-details">
+          <div class="event-detail-item">🗓️ ${e.date}</div>
+          <div class="event-detail-item">📍 ${e.location}</div>
+        </div>
+        <p class="event-description">${e.description}</p>
+        <div class="event-speaker"><div class="speaker-avatar"></div><div class="speaker-info"><div class="speaker-label">Speaker</div><div class="speaker-name">${e.speaker}</div></div></div>
+        <button class="btn ${state.activeEventTab === 'upcoming' ? 'btn-primary' : 'btn-outline'} register-btn">${state.activeEventTab === 'upcoming' ? 'Register Now' : 'View Recording'}</button>
       </div>
-      <h3 class="event-title">${e.title}</h3>
-      <div class="event-details">
-        <div class="event-detail-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"></rect></svg>${e.date}</div>
-        <div class="event-detail-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path></svg>${e.location}</div>
-      </div>
-      <p class="event-description">${e.description}</p>
-      <div class="event-speaker"><div class="speaker-avatar"></div><div class="speaker-info"><div class="speaker-label">Speaker</div><div class="speaker-name">${e.speaker}</div></div></div>
-      <button class="btn ${state.activeEventTab === 'upcoming' ? 'btn-primary' : 'btn-outline'} w-full">${state.activeEventTab === 'upcoming' ? 'Register Now' : 'View Recording'}</button>
-    </div>
-  `).join('')}</div>`;
+    `).join('')}</div>`;
+  }
 }
 
 // Initialize
