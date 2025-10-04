@@ -42,7 +42,7 @@ ConnectED is a simple yet impactful web platform designed to **bridge the gap be
 ## 🚀 Demo
 
 ### Live Demo
-[Click here to view ConnectED live](https://yourdeploymentlink.com)
+(https://connected1601.netlify.app/)
 
 ### Screenshots
 <img width="1842" height="896" alt="image" src="https://github.com/user-attachments/assets/55c21b2f-0fed-4d4c-83b5-26c86543d2d5" />
